@@ -7,4 +7,8 @@ export class PerformanceService {
   getPerformances() {
     return this.performances;
   }
+
+  create(performance: CreatePerformanceDto) {
+    this.performances.push(performance);
+  }
 }
