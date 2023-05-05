@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { PerformanceService } from './performance.service';
+import { CreatePerformanceDto } from './dto/performance.dto';
 
 @Controller('performance')
 export class PerformanceController {
@@ -12,6 +13,6 @@ export class PerformanceController {
 
   @Post()
   create(@Body() performance: CreatePerformanceDto) {
-    return this.performanceService.create(performance)
+    return this.performanceService.create(performance);
   }
 }
