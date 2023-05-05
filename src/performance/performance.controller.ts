@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { PerformanceService } from './performance.service';
-import { CreatePerformanceDto } from './dto/performance.dto';
+import { CreatePerformanceDto } from './dto/performance-create.dto';
 
 @Controller('performance')
 export class PerformanceController {

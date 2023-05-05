@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePerformanceDto } from './dto/performance.dto';
+import { CreatePerformanceDto } from './dto/performance-create.dto';
+import { v4 } from 'uuid';
 
 @Injectable()
 export class PerformanceService {
@@ -10,6 +11,6 @@ export class PerformanceService {
   }
 
   create(performance: CreatePerformanceDto) {
-    this.performances.push(performance);
+    this.performances.push({ ...performance, id: v4() });
   }
 }
