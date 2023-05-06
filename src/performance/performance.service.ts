@@ -10,9 +10,13 @@ export class PerformanceService {
     return this.performances;
   }
 
-  create(performance: CreatePerformanceDto) {
+  createPerformance(performance: CreatePerformanceDto) {
     const totalWeight =
       performance.weight * performance.sets * performance.repetitions;
     this.performances.push({ ...performance, id: v4(), totalWeight });
+  }
+
+  deletePerformance(id: string) {
+    console.log(`delete performance #${id}`);
   }
 }

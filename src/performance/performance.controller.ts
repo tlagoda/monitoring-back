@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
 import { PerformanceService } from './performance.service';
 import { CreatePerformanceDto } from './dto/performance-create.dto';
 
@@ -12,7 +12,12 @@ export class PerformanceController {
   }
 
   @Post()
-  create(@Body() performance: CreatePerformanceDto) {
-    return this.performanceService.create(performance);
+  createPerformance(@Body() performance: CreatePerformanceDto) {
+    return this.performanceService.createPerformance(performance);
+  }
+
+  @Delete(':id')
+  deletePerformance(@Param('id') id: string) {
+    return this.performanceService.deletePerformance(id);
   }
 }
