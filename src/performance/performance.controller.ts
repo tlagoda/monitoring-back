@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
+import { UpdatePerformanceDto } from './dto/performance-update.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Delete,
+  Param,
+  Patch,
+} from '@nestjs/common';
 import { PerformanceService } from './performance.service';
 import { CreatePerformanceDto } from './dto/performance-create.dto';
 
@@ -19,5 +28,13 @@ export class PerformanceController {
   @Delete(':id')
   deletePerformance(@Param('id') id: string) {
     return this.performanceService.deletePerformance(id);
+  }
+
+  @Patch(':id')
+  updatePerformance(
+    @Param('id') id: string,
+    @Body() fieldsToUpdate: UpdatePerformanceDto,
+  ) {
+    return this.performanceService.updatePerformance(id, fieldsToUpdate);
   }
 }
