@@ -1,10 +1,12 @@
 import { Optional } from '@nestjs/common';
 import { IsNotEmpty, IsDefined, IsPositive } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreatePerformanceDto {
   @IsNotEmpty()
   @IsDefined()
-  readonly date: Date;
+  @Transform(({ value }) => new Date(value))
+  readonly date: string;
 
   @IsNotEmpty()
   @IsDefined()
