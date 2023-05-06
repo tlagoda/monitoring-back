@@ -11,6 +11,8 @@ export class PerformanceService {
     return this.performances;
   }
 
+  // TODO findOne()
+
   createPerformance(performance: CreatePerformanceDto) {
     const totalWeight =
       performance.weight * performance.sets * performance.repetitions;
