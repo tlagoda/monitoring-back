@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  ValidationPipe,
-  UsePipes,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { PerformanceService } from './performance.service';
 import { CreatePerformanceDto } from './dto/performance-create.dto';
 
@@ -18,7 +11,6 @@ export class PerformanceController {
     return this.performanceService.getPerformances();
   }
 
-  @UsePipes(new ValidationPipe())
   @Post()
   create(@Body() performance: CreatePerformanceDto) {
     return this.performanceService.create(performance);
