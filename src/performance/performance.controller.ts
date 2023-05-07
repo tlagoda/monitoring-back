@@ -57,9 +57,12 @@ export class PerformanceController {
   }
 
   @Delete(':id')
-  deletePerformance(@Param('id') id: string) {
-    const aa = this.performanceService.delete(id);
-    return aa;
+  async deletePerformance(@Param('id') id: string) {
+    try {
+      return await this.performanceService.delete(id);
+    } catch (err) {
+      throw new HttpException(err.message, err.status);
+    }
   }
 
   @Patch(':id')
