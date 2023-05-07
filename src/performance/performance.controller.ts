@@ -20,8 +20,12 @@ export class PerformanceController {
 
   @Get()
   async getAll(): Promise<PerformanceDto[]> {
-    console.log('in getAll');
-    return this.performanceService.getAll();
+    try {
+      const allPerformances = await this.performanceService.getAll();
+      return allPerformances;
+    } catch (err) {
+      throw new HttpException(err.message, err.status);
+    }
   }
 
   @Post('/filters')
