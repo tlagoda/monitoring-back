@@ -58,7 +58,8 @@ export class PerformanceController {
 
   @Delete(':id')
   deletePerformance(@Param('id') id: string) {
-    return this.performanceService.deletePerformance(id);
+    const aa = this.performanceService.delete(id);
+    return aa;
   }
 
   @Patch(':id')

@@ -36,8 +36,8 @@ export class PerformanceService {
     });
   }
 
-  deletePerformance(id: string) {
-    console.log(`delete performance #${id}`);
+  delete(id: string) {
+    return this.performanceRepository.delete(id)
   }
 
   updatePerformance(id: string, fieldsToUpdate: UpdatePerformanceDto) {

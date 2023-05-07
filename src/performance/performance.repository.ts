@@ -2,6 +2,7 @@ import { Performance, PerformanceDocument } from './schemas/performance.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Injectable } from '@nestjs/common';
 import { Model, FilterQuery } from 'mongoose';
+import { DeleteResult } from 'typeorm';
 
 @Injectable()
 export class PerformanceRepository {
@@ -35,5 +36,9 @@ export class PerformanceRepository {
       performanceFilterQuery,
       performance,
     );
+  }
+
+  async delete(id: string): Promise<any> {
+    return this.performanceModel.deleteOne({ _id: id }).exec();
   }
 }
