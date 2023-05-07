@@ -57,7 +57,7 @@ export class PerformanceController {
   }
 
   @Delete(':id')
-  async deletePerformance(@Param('id') id: string) {
+  async deletePerformance(@Param('id') id: string): Promise<PerformanceDto> {
     try {
       return await this.performanceService.delete(id);
     } catch (err) {

@@ -38,7 +38,7 @@ export class PerformanceRepository {
     );
   }
 
-  async delete(id: string): Promise<any> {
-    return this.performanceModel.deleteOne({ _id: id }).exec();
+  async findByIdAndRemove(id: string): Promise<Performance> {
+    return this.performanceModel.findByIdAndRemove(id);
   }
 }

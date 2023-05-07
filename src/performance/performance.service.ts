@@ -25,19 +25,22 @@ export class PerformanceService {
     return performances.map((perf) => this.performanceMapper.toDto(perf));
   }
 
-  createPerformance(performance: CreatePerformanceDto): Promise<Performance> {
+  async createPerformance(
+    performance: CreatePerformanceDto,
+  ): Promise<Performance> {
     const totalWeight =
       performance.weight * performance.sets * performance.repetitions;
 
-    return this.performanceRepository.create({
+    return await this.performanceRepository.create({
       ...performance,
       totalWeight,
       id: v4(),
     });
   }
 
-  delete(id: string) {
-    return this.performanceRepository.delete(id)
+  async delete(id: string): Promise<PerformanceDto> {
+    const deletedPerf = await this.performanceRepository.findByIdAndRemove(id);
+    return this.performanceMapper.toDto(deletedPerf);
   }
 
   updatePerformance(id: string, fieldsToUpdate: UpdatePerformanceDto) {
