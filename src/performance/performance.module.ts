@@ -5,6 +5,7 @@ import { Module } from '@nestjs/common';
 import { Performance } from './schemas/performance.schema';
 import { PerformanceService } from './performance.service';
 import { PerformanceRepository } from './performance.repository';
+import { PerformanceMapper } from './performance.mapper';
 
 @Module({
   imports: [
@@ -13,6 +14,6 @@ import { PerformanceRepository } from './performance.repository';
     ]),
   ],
   controllers: [PerformanceController],
-  providers: [PerformanceService, PerformanceRepository],
+  providers: [PerformanceService, PerformanceRepository, PerformanceMapper],
 })
 export class PerformanceModule {}

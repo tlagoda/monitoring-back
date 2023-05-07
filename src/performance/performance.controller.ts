@@ -1,3 +1,4 @@
+import { PerformanceDto } from './dto/performance.dto';
 import { UpdatePerformanceDto } from './dto/performance-update.dto';
 import {
   Controller,
@@ -7,17 +8,32 @@ import {
   Delete,
   Param,
   Patch,
+  HttpException,
 } from '@nestjs/common';
 import { PerformanceService } from './performance.service';
 import { CreatePerformanceDto } from './dto/performance-create.dto';
+import { PerformanceFilterDto } from './dto/performance-filter.dto';
 
 @Controller('performance')
 export class PerformanceController {
   constructor(private readonly performanceService: PerformanceService) {}
 
   @Get()
-  async getPerformances() {
-    return this.performanceService.getPerformances();
+  async getAll(): Promise<PerformanceDto[]> {
+    console.log('in getAll');
+    return this.performanceService.getAll();
+  }
+
+  @Post('/filters')
+  async getFilters(
+    @Body() filters: PerformanceFilterDto,
+  ): Promise<PerformanceDto[]> {
+    try {
+      const performances = await this.performanceService.getFilters(filters);
+      return performances;
+    } catch (err) {
+      throw new HttpException(err.message, err.status);
+    }
   }
 
   @Post()
