@@ -9,6 +9,7 @@ import {
   Param,
   Patch,
   HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { PerformanceService } from './performance.service';
 import { CreatePerformanceDto } from './dto/performance-create.dto';
@@ -41,8 +42,18 @@ export class PerformanceController {
   }
 
   @Post()
-  createPerformance(@Body() performance: CreatePerformanceDto) {
-    return this.performanceService.createPerformance(performance);
+  async createPerformance(@Body() performance: CreatePerformanceDto) {
+    try {
+      await this.performanceService.createPerformance(performance);
+    } catch (err) {
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: 'Failed to create performance',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   @Delete(':id')
