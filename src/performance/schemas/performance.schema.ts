@@ -1,12 +1,15 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { Document } from 'mongoose';
 
-export type PerformanceDocument = HydratedDocument<Performance>;
+export type PerformanceDocument = Performance & Document;
 
 @Schema()
 export class Performance {
   @Prop()
-  date: Date;
+  id: string;
+
+  @Prop()
+  date: string;
 
   @Prop()
   exercise: string;
@@ -27,10 +30,10 @@ export class Performance {
   totalWeight: number;
 
   @Prop()
-  muscles: string[];
+  muscles?: string[];
 
   @Prop()
-  comments: string;
+  comments?: string;
 }
 
 export const PerformanceSchema = SchemaFactory.createForClass(Performance);
