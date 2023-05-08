@@ -1,8 +1,9 @@
 import { Performance, PerformanceDocument } from './schemas/performance.schema';
 import { InjectModel } from '@nestjs/mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model, FilterQuery } from 'mongoose';
 import { DeleteResult } from 'typeorm';
+import { UpdatePerformanceDto } from './dto/performance-update.dto';
 
 @Injectable()
 export class PerformanceRepository {
@@ -28,14 +29,21 @@ export class PerformanceRepository {
     return newPerformance.save();
   }
 
-  async findOneAndUpdate(
-    performanceFilterQuery: FilterQuery<Performance>,
-    performance: Partial<Performance>,
+  async updateByInternalId(
+    internalId: string,
+    fieldsToUpdate: UpdatePerformanceDto,
   ): Promise<Performance> {
-    return this.performanceModel.findOneAndUpdate(
-      performanceFilterQuery,
-      performance,
+    const updatedPerf = await this.performanceModel.findOneAndUpdate(
+      { internalId },
+      { $set: fieldsToUpdate },
+      { new: true },
     );
+    if (!updatedPerf) {
+      throw new NotFoundException(
+        `Performance with internal ID ${internalId} not found`,
+      );
+    }
+    return updatedPerf;
   }
 
   async findByIdAndRemove(id: string): Promise<Performance> {

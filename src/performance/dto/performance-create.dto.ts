@@ -1,5 +1,4 @@
-import { Optional } from '@nestjs/common';
-import { IsNotEmpty, IsDefined, IsPositive } from 'class-validator';
+import { IsNotEmpty, IsDefined, IsPositive, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class CreatePerformanceDto {
@@ -28,9 +27,9 @@ export class CreatePerformanceDto {
   @IsPositive()
   readonly weight: number;
 
-  @Optional()
+  @IsOptional()
   readonly muscles?: string[];
 
-  @Optional()
+  @IsOptional()
   readonly comments?: string;
 }

@@ -43,8 +43,9 @@ export class PerformanceService {
     return this.performanceMapper.toDto(deletedPerf);
   }
 
-  updatePerformance(id: string, fieldsToUpdate: UpdatePerformanceDto) {
-    console.log(`update performance #${id}`);
-    return 'a';
+  async updatePerformance(id: string, fieldsToUpdate: UpdatePerformanceDto) {
+    const updatedPerformance =
+      await this.performanceRepository.updateByInternalId(id, fieldsToUpdate);
+    return updatedPerformance;
   }
 }

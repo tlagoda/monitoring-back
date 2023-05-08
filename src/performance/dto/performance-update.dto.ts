@@ -1,28 +1,27 @@
-import { Optional } from '@nestjs/common';
-import { IsPositive } from 'class-validator';
+import { IsPositive, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class UpdatePerformanceDto {
-  @Optional()
+  @IsOptional()
   @Transform(({ value }) => new Date(value))
   readonly date?: string;
 
-  @Optional()
+  @IsOptional()
   readonly exercise?: string;
 
-  @Optional()
+  @IsOptional()
   @IsPositive()
   readonly sets?: number;
 
-  @Optional()
+  @IsOptional()
   @IsPositive()
   readonly repetitions?: number;
 
-  @Optional()
+  @IsOptional()
   @IsPositive()
   readonly restTime?: number;
 
-  @Optional()
+  @IsOptional()
   @IsPositive()
   readonly weight?: number;
 
