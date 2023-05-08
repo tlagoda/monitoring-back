@@ -1,5 +1,5 @@
 export class PerformanceDto {
-  readonly id: string;
+  readonly internalId: string;
   readonly date: Date;
   readonly exercise: string;
   readonly sets: number;

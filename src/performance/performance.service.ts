@@ -34,7 +34,7 @@ export class PerformanceService {
     return await this.performanceRepository.create({
       ...performance,
       totalWeight,
-      id: v4(),
+      internalId: v4(),
     });
   }
 

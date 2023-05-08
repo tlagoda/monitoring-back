@@ -2,6 +2,10 @@ import { IsDateString, IsOptional, IsNumber, IsString } from 'class-validator';
 
 export class PerformanceFilterDto {
   @IsOptional()
+  @IsString()
+  readonly internalId?: string;
+
+  @IsOptional()
   @IsDateString()
   readonly date?: string;
 

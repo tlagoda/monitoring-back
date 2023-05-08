@@ -6,7 +6,7 @@ export type PerformanceDocument = Performance & Document;
 @Schema()
 export class Performance {
   @Prop()
-  id: string;
+  internalId: string;
 
   @Prop()
   date: string;

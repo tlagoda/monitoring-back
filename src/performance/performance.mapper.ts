@@ -6,7 +6,7 @@ import { PerformanceDto } from './dto/performance.dto';
 export class PerformanceMapper {
   toDto(performance: Performance): PerformanceDto {
     const {
-      id,
+      internalId,
       date,
       exercise,
       sets,
@@ -19,7 +19,7 @@ export class PerformanceMapper {
     } = performance;
 
     return {
-      id,
+      internalId,
       date: new Date(date),
       exercise,
       sets,
