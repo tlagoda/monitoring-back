@@ -7,6 +7,7 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { UsersService } from './users/users.service';
       dbName: 'performances',
     }),
     PerformanceModule,
+    UsersModule,
   ],
   controllers: [AppController, UserController, UsersController],
   providers: [AppService, UserService, UsersService],
