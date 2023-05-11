@@ -2,7 +2,6 @@ import { Performance, PerformanceDocument } from './schemas/performance.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model, FilterQuery } from 'mongoose';
-import { DeleteResult } from 'typeorm';
 import { UpdatePerformanceDto } from './dto/performance-update.dto';
 
 @Injectable()
