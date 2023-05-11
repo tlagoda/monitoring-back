@@ -6,6 +6,7 @@ import { PerformanceModule } from './performance/performance.module';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { UsersController } from './users/users.controller';
     PerformanceModule,
   ],
   controllers: [AppController, UserController, UsersController],
-  providers: [AppService, UserService],
+  providers: [AppService, UserService, UsersService],
 })
 export class AppModule {}
