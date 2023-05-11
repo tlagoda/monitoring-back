@@ -3,8 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PerformanceModule } from './performance/performance.module';
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
@@ -17,7 +15,7 @@ import { UsersModule } from './users/users.module';
     PerformanceModule,
     UsersModule,
   ],
-  controllers: [AppController, UserController, UsersController],
-  providers: [AppService, UserService, UsersService],
+  controllers: [AppController, UsersController],
+  providers: [AppService, UsersService],
 })
 export class AppModule {}
