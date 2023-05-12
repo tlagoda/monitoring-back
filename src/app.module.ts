@@ -9,14 +9,14 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/performances', { //rename db
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/myapp', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
     PerformanceModule,
     UsersModule,
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

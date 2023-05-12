@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { CreateUserDto } from './dto/user-create.dto';
 import { UsersService } from './users.service';
 
@@ -10,8 +10,12 @@ export class UsersController {
   async signUp(@Body() user: CreateUserDto, @Res() res) {
     try {
       const newUser = await this.usersService.createUser(user);
+      return res.status(HttpStatus.CREATED).json(newUser);
     } catch (error) {
-      // TODO
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        message: 'Error while trying to create user..',
+        error: error.toString(),
+      });
     }
   }
 }

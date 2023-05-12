@@ -4,7 +4,7 @@ import * as mongooseTimestamp from 'mongoose-timestamp';
 
 export type PerformanceDocument = Performance & Document;
 
-@Schema()
+@Schema({ collection: 'performances' })
 export class Performance {
   @Prop()
   internalId: string;
