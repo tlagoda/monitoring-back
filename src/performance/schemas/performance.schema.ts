@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as mongooseTimestamp from 'mongoose-timestamp';
 
 export type PerformanceDocument = Performance & Document;
 
@@ -37,3 +38,4 @@ export class Performance {
 }
 
 export const PerformanceSchema = SchemaFactory.createForClass(Performance);
+PerformanceSchema.plugin(mongooseTimestamp);

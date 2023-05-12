@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as mongooseTimestamp from 'mongoose-timestamp';
 
 export type UserDocument = User & Document;
 
@@ -22,3 +23,4 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+UserSchema.plugin(mongooseTimestamp);
