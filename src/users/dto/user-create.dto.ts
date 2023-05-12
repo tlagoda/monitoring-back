@@ -1,14 +1,16 @@
 import {
   IsNotEmpty,
   IsEmail,
-  MinLength,
   IsString,
   IsIn,
+  Length,
 } from 'class-validator';
+import { Sexe } from '../interfaces/users.interface';
 
 export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
+  @Length(6, 20)
   readonly username: string;
 
   @IsNotEmpty()
@@ -16,9 +18,9 @@ export class CreateUserDto {
   readonly email: string;
 
   @IsNotEmpty()
-  @MinLength(6)
+  @Length(6, 200)
   readonly password: string;
 
   @IsIn(['M', 'F'])
-  readonly sexe?: string;
+  readonly sexe?: Sexe;
 }
