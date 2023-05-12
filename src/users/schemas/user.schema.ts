@@ -4,7 +4,7 @@ import * as mongooseTimestamp from 'mongoose-timestamp';
 
 export type UserDocument = User & Document;
 
-@Schema({ collection: 'users' })
+@Schema()
 export class User {
   @Prop()
   internalId: string;
