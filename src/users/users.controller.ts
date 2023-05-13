@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post, Res, Get } from '@nestjs/common';
 import { CreateUserDto } from './dto/user-create.dto';
 import { UsersService } from './users.service';
 
@@ -13,9 +13,15 @@ export class UsersController {
       return res.status(HttpStatus.CREATED).json(newUser);
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Error while trying to create user..',
+        message: 'Error while trying to create user.',
         error: error.toString(),
       });
     }
   }
+
+  @Get()
+  async getFilters(@Body() filters: UserFiltersDto): Promise<UserDto> {}
+  // todo: create 2 dto
+  // add user-id to performance
+  // add totalweight to user
 }
