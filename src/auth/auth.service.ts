@@ -1,6 +1,6 @@
 import { CredentialsDto } from './dto/credentials.dto';
 import { UsersService } from './../users/users.service';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
