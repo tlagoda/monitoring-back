@@ -9,6 +9,10 @@ export class CreatePerformanceDto {
 
   @IsNotEmpty()
   @IsDefined()
+  readonly userInternalid: string;
+
+  @IsNotEmpty()
+  @IsDefined()
   readonly exercise: string;
 
   @IsDefined()

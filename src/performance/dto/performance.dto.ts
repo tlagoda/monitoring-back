@@ -1,5 +1,6 @@
 export class PerformanceDto {
   readonly internalId: string;
+  readonly userInternalId: string;
   readonly date: Date;
   readonly exercise: string;
   readonly sets: number;

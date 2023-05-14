@@ -23,5 +23,4 @@ export class UsersController {
   async getFilters(@Body() filters: UserFiltersDto): Promise<UserDto> {}
   // todo: create 2 dto
   // add user-id to performance
-  // add totalweight to user
 }

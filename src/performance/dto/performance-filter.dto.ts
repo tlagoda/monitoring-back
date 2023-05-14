@@ -6,6 +6,10 @@ export class PerformanceFilterDto {
   readonly internalId?: string;
 
   @IsOptional()
+  @IsString()
+  readonly userInternalid: string;
+
+  @IsOptional()
   @IsDateString()
   readonly date?: string;
 

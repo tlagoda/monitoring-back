@@ -10,6 +10,9 @@ export class Performance {
   internalId: string;
 
   @Prop()
+  userInternalId: string;
+
+  @Prop()
   date: string;
 
   @Prop()
