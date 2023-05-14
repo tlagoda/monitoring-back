@@ -33,6 +33,11 @@ export class UsersService {
     return users.map((user) => this.userMapper.toDto(user));
   }
 
+  async getByEmail(email: string): Promise<User> {
+    const user = await this.userRepository.findOne({ email });
+    return user;
+  }
+
   async delete(id: string): Promise<boolean> {
     const deleteResult = await this.userRepository.findByInternalIdAndRemove(
       id,

@@ -20,6 +20,10 @@ export class UsersRepository {
     return this.userModel.find(usersFilterQuery);
   }
 
+  async findOne(usersFilterQuery: FilterQuery<User>): Promise<User> {
+    return this.userModel.findOne(usersFilterQuery);
+  }
+
   async findByInternalIdAndRemove(internalId: string): Promise<DeleteResult> {
     return this.userModel.deleteOne({ internalId });
   }
