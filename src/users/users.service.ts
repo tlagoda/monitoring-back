@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 import { UserMapper } from './users.mapper';
 import { UsersRepository } from './users.repository';
 import { Injectable } from '@nestjs/common';
@@ -17,7 +18,11 @@ export class UsersService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
-    return await this.userRepository.create(createUserDto);
+    return await this.userRepository.create({
+      ...createUserDto,
+      internalId: v4(),
+      totalWeight: 0,
+    });
   }
 
   async getFilters(filters: UserFiltersDto): Promise<GetUserDto[]> {
