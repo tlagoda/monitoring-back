@@ -8,12 +8,13 @@ import {
   Logger,
   HttpStatus,
 } from '@nestjs/common';
+import { CredentialsDto } from './dto/credentials.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly userService: UsersService) {}
 
-  @Post()
+  @Post('signup')
   async signup(@Body() user: CreateUserDto, @Res() res) {
     try {
       const newUser = await this.userService.createUser(user);
@@ -25,5 +26,10 @@ export class AuthController {
         error: err.toString(),
       });
     }
+  }
+
+  @Post('login')
+  async login(@Body() credentials: CredentialsDto) {
+    
   }
 }
