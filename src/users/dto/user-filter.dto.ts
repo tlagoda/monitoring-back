@@ -11,14 +11,17 @@ import {
 import { Sexe } from '../interfaces/users.interface';
 
 export class UserFiltersDto {
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  @Length(6, 20)
-  readonly username: string;
+  readonly username?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsString()
+  readonly internalId?: string;
+
+  @IsOptional()
   @IsEmail()
-  readonly email: string;
+  readonly email?: string;
 
   @IsOptional()
   @IsNumber()
@@ -26,6 +29,6 @@ export class UserFiltersDto {
   readonly totalWeight?: number;
 
   @IsOptional()
-  @IsIn(['M', 'F'])
+  @IsIn(['M', 'F', 'unknown'])
   readonly sexe?: Sexe;
 }
