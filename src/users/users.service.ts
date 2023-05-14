@@ -14,12 +14,13 @@ export class UsersService {
     private userMapper: UserMapper,
   ) {}
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
-    return await this.userRepository.create({
+  async createUser(createUserDto: CreateUserDto): Promise<UserDto> {
+    const newUser = await this.userRepository.create({
       ...createUserDto,
       internalId: v4(),
       totalWeight: 0,
     });
+    return this.userMapper.toDto(newUser);
   }
 
   async getAll(): Promise<UserDto[]> {

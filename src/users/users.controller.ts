@@ -20,14 +20,14 @@ import { get } from 'http';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('signup')
+  @Post()
   async create(@Body() user: CreateUserDto, @Res() res) {
     try {
       const newUser = await this.usersService.createUser(user);
       return res.status(HttpStatus.CREATED).json(newUser);
     } catch (err) {
       Logger.error(
-        `Canno't create user ${user.username} / ${user.email} : ${err.message}`,
+        `Cannot create user ${user.username} / ${user.email} : ${err.message}`,
       );
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'Error while trying to create user.',
@@ -65,7 +65,7 @@ export class UsersController {
         };
       } else {
         return {
-          message: `Canno't delete user #${id}.`,
+          message: `Cannot delete user #${id}.`,
         };
       }
     } catch (err) {
