@@ -4,6 +4,8 @@ import {
   IsString,
   IsIn,
   Length,
+  IsNumber,
+  IsPositive,
 } from 'class-validator';
 import { Sexe } from '../interfaces/users.interface';
 
@@ -20,6 +22,11 @@ export class CreateUserDto {
   @IsNotEmpty()
   @Length(6, 200)
   readonly password: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
+  readonly totalweight: number;
 
   @IsIn(['M', 'F'])
   readonly sexe?: Sexe;

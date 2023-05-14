@@ -19,6 +19,9 @@ export class User {
   password: string;
 
   @Prop()
+  totalweight: number;
+
+  @Prop()
   sexe?: string;
 }
 
