@@ -9,7 +9,7 @@ export class CreatePerformanceDto {
 
   @IsNotEmpty()
   @IsDefined()
-  readonly userInternalid: string;
+  readonly userInternalId: string;
 
   @IsNotEmpty()
   @IsDefined()

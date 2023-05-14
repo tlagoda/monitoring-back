@@ -7,6 +7,7 @@ export class PerformanceMapper {
   toDto(performance: Performance): PerformanceDto {
     const {
       internalId,
+      userInternalId,
       date,
       exercise,
       sets,
@@ -20,6 +21,7 @@ export class PerformanceMapper {
 
     return {
       internalId,
+      userInternalId,
       date: new Date(date),
       exercise,
       sets,

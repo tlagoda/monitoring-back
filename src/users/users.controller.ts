@@ -1,4 +1,12 @@
-import { Body, Controller, HttpStatus, Post, Res, Get } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpStatus,
+  Post,
+  Res,
+  Get,
+  Logger,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/user-create.dto';
 import { UserFiltersDto } from './dto/user-filter.dto';
 import { UsersService } from './users.service';
@@ -21,7 +29,14 @@ export class UsersController {
     }
   }
 
-  @Get()
-  async getFilters(@Body() filters: UserFiltersDto): Promise<GetUserDto[]> {}
-  // todo: create 2 dto
+  @Get('filters')
+  async getUsersByFilters(
+    @Body() filters: UserFiltersDto,
+  ): Promise<GetUserDto[]> {
+    try {
+      return this.usersService.getFilters(filters);
+    } catch (error) {
+      Logger.error(`Unable to get users : ${error.message}`);
+    }
+  }
 }
