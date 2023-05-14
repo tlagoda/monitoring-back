@@ -14,6 +14,7 @@ import { CreateUserDto } from './dto/user-create.dto';
 import { UserFiltersDto } from './dto/user-filter.dto';
 import { UsersService } from './users.service';
 import { UserDto } from './dto/user.dto';
+import { get } from 'http';
 
 @Controller('users')
 export class UsersController {
@@ -30,6 +31,16 @@ export class UsersController {
         message: 'Error while trying to create user.',
         error: err.toString(),
       });
+    }
+  }
+
+  @Get()
+  async getAll(): Promise<UserDto[]> {
+    try {
+      const allUsers = await this.usersService.getAll();
+      return allUsers;
+    } catch (err) {
+      throw new HttpException(err.message, err.status);
     }
   }
 

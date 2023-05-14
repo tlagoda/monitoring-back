@@ -22,6 +22,11 @@ export class UsersService {
     });
   }
 
+  async getAll(): Promise<UserDto[]> {
+    const users = await this.userRepository.find({});
+    return users.map((user) => this.userMapper.toDto(user));
+  }
+
   async getFilters(filters: UserFiltersDto): Promise<UserDto[]> {
     const users = await this.userRepository.find(filters);
     return users.map((user) => this.userMapper.toDto(user));
