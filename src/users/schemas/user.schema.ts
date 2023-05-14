@@ -1,3 +1,4 @@
+import { Sexe } from './../interfaces/users.interface';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongooseTimestamp from 'mongoose-timestamp';
@@ -22,7 +23,7 @@ export class User {
   totalweight: number;
 
   @Prop()
-  sexe?: string;
+  sexe?: Sexe;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

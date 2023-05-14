@@ -20,7 +20,6 @@ export class UsersController {
   }
 
   @Get()
-  async getFilters(@Body() filters: UserFiltersDto): Promise<UserDto> {}
+  async getFilters(@Body() filters: UserFiltersDto): Promise<UserDto[]> {}
   // todo: create 2 dto
-  // add user-id to performance
 }
