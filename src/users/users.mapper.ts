@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { User } from './schemas/user.schema';
-import { GetUserDto } from './dto/user-get.dto';
+import { UserDto } from './dto/user.dto';
 
 @Injectable()
 export class UserMapper {
-  toDto(user: User): GetUserDto {
+  toDto(user: User): UserDto {
     const { username, email, totalWeight, internalId, sexe } = user;
 
     return {

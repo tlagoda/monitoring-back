@@ -6,11 +6,14 @@ import {
   Res,
   Get,
   Logger,
+  Delete,
+  Param,
+  HttpException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/user-create.dto';
 import { UserFiltersDto } from './dto/user-filter.dto';
 import { UsersService } from './users.service';
-import { GetUserDto } from './dto/user-get.dto';
+import { UserDto } from './dto/user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -21,22 +24,40 @@ export class UsersController {
     try {
       const newUser = await this.usersService.createUser(user);
       return res.status(HttpStatus.CREATED).json(newUser);
-    } catch (error) {
+    } catch (err) {
+      Logger.error(`Canno't sign up : ${err.message}`);
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'Error while trying to create user.',
-        error: error.toString(),
+        error: err.toString(),
       });
     }
   }
 
   @Get('filters')
-  async getUsersByFilters(
-    @Body() filters: UserFiltersDto,
-  ): Promise<GetUserDto[]> {
+  async getUsersByFilters(@Body() filters: UserFiltersDto): Promise<UserDto[]> {
     try {
       return this.usersService.getFilters(filters);
-    } catch (error) {
-      Logger.error(`Unable to get users : ${error.message}`);
+    } catch (err) {
+      Logger.error(`Unable to get users : ${err.message}`);
+    }
+  }
+
+  @Delete(':id')
+  async deleteUser(@Param('id') id: string) {
+    try {
+      const isDeleted = await this.usersService.delete(id);
+      if (isDeleted) {
+        return {
+          message: `User #${id} has been deleted.`,
+        };
+      } else {
+        return {
+          message: `Canno't delete user #${id}.`,
+        };
+      }
+    } catch (err) {
+      Logger.error(`Error while trying to delete user #${id} : ${err.message}`);
+      throw new HttpException(err.message, err.status);
     }
   }
 }

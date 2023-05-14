@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import { Sexe } from '../interfaces/users.interface';
 
-export class GetUserDto {
+export class UserDto {
   @IsNotEmpty()
   @IsString()
   readonly username: string;
