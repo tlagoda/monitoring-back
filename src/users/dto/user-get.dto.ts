@@ -1,31 +1,31 @@
 import {
-  IsOptional,
-  IsNumber,
-  IsPositive,
+  IsEmail,
   IsIn,
   IsNotEmpty,
+  IsNumber,
+  IsPositive,
   IsString,
-  Length,
-  IsEmail,
 } from 'class-validator';
 import { Sexe } from '../interfaces/users.interface';
 
-export class UserFiltersDto {
+export class GetUserDto {
   @IsNotEmpty()
   @IsString()
-  @Length(6, 20)
   readonly username: string;
 
   @IsNotEmpty()
   @IsEmail()
   readonly email: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsNumber()
   @IsPositive()
-  readonly totalWeight?: number;
+  readonly totalWeight: number;
 
-  @IsOptional()
   @IsIn(['M', 'F'])
   readonly sexe?: Sexe;
+
+  @IsNotEmpty()
+  @IsString()
+  readonly internalId: string;
 }
