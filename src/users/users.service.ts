@@ -1,3 +1,4 @@
+import { UserMapper } from './users.mapper';
 import { UsersRepository } from './users.repository';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -12,6 +13,7 @@ export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private userRepository: UsersRepository,
+    private userMapper: UserMapper,
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {

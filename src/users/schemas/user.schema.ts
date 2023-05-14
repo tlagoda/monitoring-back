@@ -20,7 +20,7 @@ export class User {
   password: string;
 
   @Prop()
-  totalweight: number;
+  totalWeight: number;
 
   @Prop()
   sexe?: Sexe;

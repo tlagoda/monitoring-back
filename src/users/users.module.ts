@@ -1,3 +1,4 @@
+import { UserMapper } from './users.mapper';
 import { UsersRepository } from './users.repository';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
@@ -11,6 +12,6 @@ import { User } from './schemas/user.schema';
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), // wait db renamed
   ],
   controllers: [UsersController],
-  providers: [UsersService, UsersRepository],
+  providers: [UsersService, UsersRepository, UserMapper],
 })
 export class UsersModule {}
