@@ -3,9 +3,7 @@ import {
   IsNumber,
   IsPositive,
   IsIn,
-  IsNotEmpty,
   IsString,
-  Length,
   IsEmail,
 } from 'class-validator';
 import { Sexe } from '../interfaces/users.interface';
