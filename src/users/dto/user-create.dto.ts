@@ -16,6 +16,6 @@ export class CreateUserDto {
   @Length(6, 200)
   readonly password: string;
 
-  @IsIn(['M', 'F'])
-  readonly sexe?: Sexe;
+  @IsIn(['M', 'F', 'unknown'])
+  readonly sexe: Sexe;
 }
