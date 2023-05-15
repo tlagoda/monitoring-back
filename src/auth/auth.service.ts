@@ -14,11 +14,8 @@ export class AuthService {
       return null;
     }
 
-    const encryptedPassword = await this.usersService.hashPassword(
-      credentials.password,
-    );
     const passwordMatches = await bcrypt.compare(
-      encryptedPassword,
+      credentials.password,
       user.password,
     );
 
