@@ -6,6 +6,7 @@ import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto/user-create.dto';
 import { UserFiltersDto } from './dto/user-filter.dto';
 import { UserDto } from './dto/user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -15,8 +16,13 @@ export class UsersService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<UserDto> {
+    const { username, email, password, sexe } = createUserDto;
+    const hashedPassword = await this.hashPassword(password);
     const newUser = await this.userRepository.create({
-      ...createUserDto,
+      username,
+      email,
+      sexe,
+      password: hashedPassword,
       internalId: v4(),
       totalWeight: 0,
     });
@@ -47,5 +53,11 @@ export class UsersService {
     } else {
       return false;
     }
+  }
+
+  private async hashPassword(password: string): Promise<string> {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    return hashedPassword;
   }
 }
