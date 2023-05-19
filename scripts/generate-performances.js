@@ -1,7 +1,12 @@
-import { v4 } from 'uuid';
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const uuid = require('uuid');
+const muscles = require('./data/data');
+const exercises = require('./data/data');
+const axios = require('axios');
 
 const userInternalId = '6ab69e6e-4607-4f33-b4dd-68a4b99d1c8a';
-const internalId = v4();
+const internalId = uuid.v4();
 
 function generateRandomDate() {
   const today = new Date();
@@ -24,3 +29,26 @@ function getRandomInt(x, y) {
   const max = Math.floor(y);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+const generatePerformances = async () => {
+  for (let i = 1; i++; i <= 1000) {
+    const performances = {
+      userInternalId,
+      date: generateRandomDate(),
+      exercise: exercises[getRandomInt(0, exercises.length - 1)],
+      sets: getRandomInt(3, 12),
+      repetitions: getRandomInt(6, 20),
+      restTime: getRandomInt(30, 180),
+      weight: getRandomInt(5, 50),
+      muscles: muscles[getRandomInt(0, muscles.length - 1)],
+    };
+
+    try {
+      await axios.post('http://localhost:3000/performances', performance);
+    } catch (err) {
+      console.log(`Error while creating performance #${i} : ${err.message}`);
+      break;
+    }
+  }
+};
+
+generatePerformances();

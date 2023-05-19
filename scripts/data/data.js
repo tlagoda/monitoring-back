@@ -1,4 +1,4 @@
-export const muscles = [
+const muscles = [
   'Chest',
   'Back',
   'Legs',
@@ -11,7 +11,7 @@ export const muscles = [
   'Calves',
 ];
 
-export const exercises = [
+const exercises = [
   'Bench Press',
   'Squat',
   'Deadlift',
@@ -28,3 +28,5 @@ export const exercises = [
   'Plank',
   'Russian Twist',
 ];
+
+module.exports = { muscles, exercises };
