@@ -6,7 +6,6 @@ import {
   IsPositive,
   IsString,
 } from 'class-validator';
-import { Sexe } from '../interfaces/users.interface';
 
 export class UserDto {
   @IsNotEmpty()
@@ -21,9 +20,6 @@ export class UserDto {
   @IsNumber()
   @IsPositive()
   readonly totalWeight: number;
-
-  @IsIn(['M', 'F'])
-  readonly sexe?: Sexe;
 
   @IsNotEmpty()
   @IsString()

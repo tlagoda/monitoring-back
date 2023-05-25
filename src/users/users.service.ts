@@ -16,12 +16,11 @@ export class UsersService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<UserDto> {
-    const { username, email, password, sexe } = createUserDto;
+    const { username, email, password } = createUserDto;
     const hashedPassword = await this.hashPassword(password);
     const newUser = await this.userRepository.create({
       username,
       email,
-      sexe,
       password: hashedPassword,
       internalId: v4(),
       totalWeight: 0,

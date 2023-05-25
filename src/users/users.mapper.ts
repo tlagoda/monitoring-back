@@ -5,14 +5,13 @@ import { UserDto } from './dto/user.dto';
 @Injectable()
 export class UserMapper {
   toDto(user: User): UserDto {
-    const { username, email, totalWeight, internalId, sexe } = user;
+    const { username, email, totalWeight, internalId } = user;
 
     return {
       username,
       email,
       totalWeight,
       internalId,
-      sexe,
     };
   }
 }

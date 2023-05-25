@@ -6,7 +6,6 @@ import {
   IsString,
   IsEmail,
 } from 'class-validator';
-import { Sexe } from '../interfaces/users.interface';
 
 export class UserFiltersDto {
   @IsOptional()
@@ -25,8 +24,4 @@ export class UserFiltersDto {
   @IsNumber()
   @IsPositive()
   readonly totalWeight?: number;
-
-  @IsOptional()
-  @IsIn(['M', 'F', 'unknown'])
-  readonly sexe?: Sexe;
 }
