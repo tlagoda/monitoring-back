@@ -10,6 +10,7 @@ import {
   Patch,
   HttpException,
   HttpStatus,
+  Res,
 } from '@nestjs/common';
 import { PerformanceService } from './performance.service';
 import { CreatePerformanceDto } from './dto/performance-create.dto';
@@ -42,9 +43,14 @@ export class PerformanceController {
   }
 
   @Post()
-  async createPerformance(@Body() performance: CreatePerformanceDto) {
+  async createPerformance(
+    @Body() performance: CreatePerformanceDto,
+    @Res() res,
+  ) {
     try {
-      await this.performanceService.createPerformance(performance);
+      const createdPerformance =
+        await this.performanceService.createPerformance(performance);
+      return res.status(HttpStatus.CREATED).json(createdPerformance);
     } catch (err) {
       throw new HttpException(
         {
