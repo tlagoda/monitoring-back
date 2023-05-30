@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PerformanceModule } from './performance/performance.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { WeightController } from './weight/weight.controller';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     AuthModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, WeightController],
   providers: [AppService],
 })
 export class AppModule {}
